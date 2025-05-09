@@ -1,36 +1,11 @@
-"""Global point for collected routers. __routes__ is a :class:`.Routes`
-instance that contains all routers in your application.
-
-Examples:
-    After declaring all routers, you need to register them in your application::
-
-        >>> from fastapi import FastAPI
-        >>> app = FastAPI()
-        >>> __routes__.register_routes(app=app)
-"""
+"""Global point for collected routers."""
 
 from fastapi import APIRouter
-
+from app.internal.routes.task_routes import router as task_router
 from app.pkg.models.core.routes import Routes
 from app.pkg.models.exceptions import (
-    city,
-    contacts,
-    country,
-    direction,
-    partners,
-    skill,
-    skill_levels,
+    city, contacts, country, direction, partners, skill, skill_levels
 )
-
-__all__ = [
-    "__routes__",
-    "city_router",
-    "contacts_router",
-    "country_router",
-    "direction_router",
-    "skill_router",
-    "skill_levels_router",
-]
 
 city_router = APIRouter(
     prefix="/country/city",
@@ -43,15 +18,11 @@ city_router = APIRouter(
     },
 )
 
-
 contacts_router = APIRouter(
     prefix="/users/contacts",
     tags=["Contacts"],
-    responses={
-        **contacts.ContactsNotFound.generate_openapi(),
-    },
+    responses={**contacts.ContactsNotFound.generate_openapi()},
 )
-
 
 country_router = APIRouter(
     prefix="/country",
@@ -72,7 +43,6 @@ direction_router = APIRouter(
     },
 )
 
-
 skill_router = APIRouter(
     prefix="/skills",
     tags=["Skills"],
@@ -82,26 +52,21 @@ skill_router = APIRouter(
     },
 )
 
-
 skill_levels_router = APIRouter(
     prefix="/skills/levels",
     tags=["Skill levels"],
-    responses={
-        **skill_levels.SkillLevelAlreadyExists.generate_openapi(),
-    },
+    responses={**skill_levels.SkillLevelAlreadyExists.generate_openapi()},
 )
 
 partners_router = APIRouter(
     prefix="/partners",
     tags=["Partner"],
-    responses={
-        **partners.PartnerNotFound.generate_openapi(),
-    },
+    responses={**partners.PartnerNotFound.generate_openapi()},
 )
-
 
 __routes__ = Routes(
     routers=(
+        task_router,
         skill_router,
         skill_levels_router,
         direction_router,

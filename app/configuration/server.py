@@ -1,7 +1,5 @@
 """Server configuration."""
 
-import logging
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -18,6 +16,9 @@ from app.internal.routes import __routes__
 from app.pkg.models.base import BaseAPIException
 from app.pkg.models.types.fastapi import FastAPITypes
 from app.pkg.settings import settings
+
+import logging
+logging.basicConfig(level=logging.DEBUG)
 
 __all__ = ["Server"]
 

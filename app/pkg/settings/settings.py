@@ -68,11 +68,11 @@ class Postgresql(_Settings):
     #: PositiveInt: positive int (x > 0) port of postgresql.
     PORT: PositiveInt = 5432
     #: str: Postgresql user.
-    USER: str = "postgres"
+    USER: str = "test_user"
     #: SecretStr: Postgresql password.
-    PASSWORD: SecretStr = SecretStr("postgres")
+    PASSWORD: SecretStr = SecretStr("12345")
     #: str: Postgresql database name.
-    DATABASE_NAME: str = "postgres"
+    DATABASE_NAME: str = "todo_api_template"
 
     #: PositiveInt: Min count of connections in one pool to postgresql.
     MIN_CONNECTION: PositiveInt = 1
